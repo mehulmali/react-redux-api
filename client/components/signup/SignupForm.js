@@ -15,7 +15,8 @@ class SignupForm extends React.Component {
             email: '',
             password: '',
             passwordConfirmation: '',
-            timezone: ''
+            timezone: '',
+            errors: {}
         };
 
         this.onChange = this.onChange.bind(this);
@@ -28,12 +29,20 @@ class SignupForm extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        //this.setState({[e.target.name]: e.target.value}
-        //axios.post(API_URL + '/api/users', {user: this.state})
-        this.props.userSignupRequest(this.state);
+
+        this.props.userSignupRequest(this.state).then(
+            () => {
+                console.log('data', data);
+            },
+            (errors) => {
+                console.log('errors', errors);
+                this.setState({errors: errors.response.data})
+            }
+        );
     }
 
     render() {
+        const { errors } = this.state;
         const options = map(timezones, (val, key) =>
             <option key={val} value={val}>{key}</option>
         );
@@ -88,7 +97,7 @@ class SignupForm extends React.Component {
                 <div className="form-group">
                     <label className="control-label">Timezone</label>
                     <select
-                        value={this.state.Timezone}
+                        value={this.state.timezone}
                         onChange={this.onChange}
                         name="timezone"
                         className="form-control">
