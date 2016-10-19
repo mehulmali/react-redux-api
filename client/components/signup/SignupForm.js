@@ -28,7 +28,9 @@ class SignupForm extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        this.setState({[e.target.name]: e.target.value})
+        //this.setState({[e.target.name]: e.target.value}
+        //axios.post(API_URL + '/api/users', {user: this.state})
+        this.props.userSignupRequest(this.state);
     }
 
     render() {
@@ -90,7 +92,7 @@ class SignupForm extends React.Component {
                         onChange={this.onChange}
                         name="timezone"
                         className="form-control">
-                        <option value="" disabled> Choose Your Timezone </option>
+                        <option value="" disabled> Choose Your Timezone</option>
                         {options}
                     </select>
                 </div>
@@ -104,5 +106,9 @@ class SignupForm extends React.Component {
         )
     }
 }
+
+SignupForm.propTypes = {
+    userSignupRequest: React.PropTypes.func.isRequired
+};
 
 export default SignupForm;
