@@ -1,20 +1,31 @@
 /**
  * Created by User on 10/19/2016.
  */
+
 import path from 'path';
+import webpack from 'webpack';
 
 export default{
-    devtool: 'eval-source-map',
-    entry: path.join(__dirname, '/client/index.js'),
+    devtools: 'eval-source-map',
+    entry: [
+        'webpack-hot-middleware/client',
+        path.join(__dirname, '/client/index.js')
+    ],
     output: {
-        path: '/'
+        path: '/',
+        publicPath: '/'
     },
+    plugins:[
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
+    ],
     module: {
         loaders: [
             {
                 test: /\.js$/,
                 include: path.join(__dirname, 'client'),
-                loaders: ['babel']
+                loaders: [ 'babel' ]
             }
         ]
     },
