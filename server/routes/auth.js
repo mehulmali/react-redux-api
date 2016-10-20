@@ -13,13 +13,17 @@ let router = express.Router();
 router.post('/', (req, res) => {
     const { identifier, password } = req.body;
 
-    if (identifier === 'me@gmail.com' && password === '123456') {
-        const token = jwt.sign({
-            id: '123456789',
-            username: 'Mehul',
-            email: 'identifier'
-        }, config.jwtSecret);
-        res.json({token});
+    if (identifier === 'me@gmail.com') {
+        if (password === '123456') {
+            const token = jwt.sign({
+                id: '123456789',
+                username: 'Mehul',
+                email: 'identifier'
+            }, config.jwtSecret);
+            res.json({token});
+        } else {
+            res.status(401).json({form: 'Invalid credentials'});
+        }
     } else {
         res.status(401).json({form: 'Invalid credentials'});
     }

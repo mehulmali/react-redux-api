@@ -1,31 +1,21 @@
 /**
  * Created by User on 10/20/2016.
  */
-import { ADD_FLASH_MESSAGE, DELETE_FLASH_MESSAGE } from '../actions/types'
-import shortid from 'shortid'
-import findIndex from 'lodash/findIndex'
+import { SET_CURRENT_USER } from '../actions/types'
+import isEmpty from 'lodash/isEmpty'
 
-export default (state = [], action = {}) => {
+const initialState = {
+    isAuthenticated: false,
+    user: {}
+};
+
+export default (state = initialState, action = {}) => {
     switch (action.type) {
-        case ADD_FLASH_MESSAGE:
-            return [
-                ...state,
-                {
-                    id: shortid.generate(),
-                    type: action.message.type,
-                    text: action.message.text
-                }
-            ];
-
-        case DELETE_FLASH_MESSAGE:
-            const index = findIndex(state, {id: action.id});
-            if (index >= 0) {
-                return [
-                    ...state.slice(0, index),
-                    ...state.slice(index + 1)
-                ]
-            }
-            return state;
+        case SET_CURRENT_USER:
+            return {
+                isAuthenticated: !isEmpty(action.user),
+                user: action.user
+            };
 
         default:
             return state;
