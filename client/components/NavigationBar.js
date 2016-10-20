@@ -15,7 +15,7 @@ export default () => {
 
                 <ul className="nav navbar-nav navbar-right">
                     <li><Link to="/signup"><span className="glyphicon glyphicon-user"></span> Sign Up</Link></li>
-                    <li><a href="#"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><Link to="/login"><span className="glyphicon glyphicon-log-in"></span> Login</Link></li>
                 </ul>
             </div>
         </nav>
