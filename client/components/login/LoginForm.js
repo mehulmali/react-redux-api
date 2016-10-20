@@ -20,6 +20,7 @@ class LoginForm extends React.Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+
     }
 
     isValid() {
@@ -60,6 +61,7 @@ class LoginForm extends React.Component {
         return (
             <form onSubmit={this.onSubmit}>
                 <h1>Login</h1>
+                { errors.form && <div className="alert alert-danger">{errors.form}</div> }
 
                 <TextFieldGroup
                     error={errors.identifier}
@@ -97,4 +99,4 @@ LoginForm.contextTypes = {
 };
 
 
-export default connect(null, {login})(LoginForm );
+export default connect(null, {login})(LoginForm);
