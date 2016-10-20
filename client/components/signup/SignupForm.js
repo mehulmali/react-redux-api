@@ -5,6 +5,7 @@
 import React from 'react';
 import map from 'lodash/map';
 import classnames from 'classnames';
+import { browserHistory } from 'react-router';
 
 import timezones from '../../data/timezones';
 import validateInput from '../../../server/shared/validations/signup';
@@ -48,8 +49,10 @@ class SignupForm extends React.Component {
             this.setState({errors: {}, isLoading: true});
             this.props.userSignupRequest(this.state)
                 .then(
-                    () => { //success block
-                        console.log('data', data);
+                    (data) => { //success block
+                        //browserHistory.push('/');
+                        this.context.router.push('/');
+                        //this.setState({data: data.response.data, isLoading: false})
                     },
                     (errors) => { //error block
                         this.setState({errors: errors.response.data, isLoading: false})
@@ -127,6 +130,10 @@ class SignupForm extends React.Component {
 
 SignupForm.propTypes = {
     userSignupRequest: React.PropTypes.func.isRequired
+};
+
+SignupForm.contextTypes = {
+    router: React.PropTypes.object.isRequired
 };
 
 export default SignupForm;

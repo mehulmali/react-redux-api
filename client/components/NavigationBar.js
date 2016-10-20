@@ -10,7 +10,7 @@ export default () => {
         <nav className="navbar navbar-default">
             <div className="container-fluid">
                 <div className="navbar-header">
-                    <Link to="/" className="navbar-brand">WebSiteName</Link>
+                    <Link to="/" className="navbar-brand">React-Redux App</Link>
                 </div>
 
                 <ul className="nav navbar-nav navbar-right">
