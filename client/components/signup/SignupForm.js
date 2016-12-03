@@ -57,8 +57,8 @@ class SignupForm extends React.Component {
                     //browserHistory.push('/');
                     this.context.router.push('/');
                 },
-                (errors) => { //error block
-                    this.setState({errors: errors.response.data, isLoading: false})
+                (err) => { //error block
+                    this.setState({errors: err.response.data, isLoading: false})
                 }
             );
         }

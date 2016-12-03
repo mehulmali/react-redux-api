@@ -10,11 +10,13 @@ import App from './components/App'
 import Greetings from './components/Greetings'
 import SignupPage from './components/signup/SignupPage'
 import LoginPage from './components/login/LoginPage'
+import NewEventPage from './components/events/NewEventPage'
 
 export default(
     <Router path="/" component={App}>
         <IndexRoute component={Greetings}/>
         <Router path="signup" component={SignupPage}/>
         <Router path="login" component={LoginPage}/>
+        <Router path="new-event" component={NewEventPage}/>
     </Router>
 )
